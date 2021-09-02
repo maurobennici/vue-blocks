@@ -146,13 +146,13 @@
 
           let originLinkPos = this.getConnectionPos(originBlock, link.originSlot, false)
           let targetLinkPos = this.getConnectionPos(targetBlock, link.targetSlot, true)
-
+/*
           if (!originLinkPos || !targetLinkPos) {
             console.log('Remove invalid link (slot not exist)', link)
             this.removeLink(link.id)
             continue
           }
-
+*/
           let x1 = originLinkPos.x
           let y1 = originLinkPos.y
 
