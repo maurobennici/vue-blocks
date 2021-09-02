@@ -363,23 +363,23 @@
       },
       linkingBreak (targetBlock, slotNumber) {
         if (targetBlock && slotNumber > -1) {
-          let findLinks = this.links.find(value => {
+          let findLink = this.links.find(value => {
             return value.targetID === targetBlock.id && value.targetSlot === slotNumber
           })
 
-          findLinks.forEach(link =>  {
+          if (findLink) {
             let findBlock = this.blocks.find(value => {
-              return value.id === link.originID
+              return value.id === findLink.originID
             })
 
             this.links = this.links.filter(value => {
               return !(value.targetID === targetBlock.id && value.targetSlot === slotNumber)
             })
 
-            this.linkingStart(findBlock, link.originSlot)
+            this.linkingStart(findBlock, findLink.originSlot)
 
             this.updateScene()
-          })
+          }
         }
       },
       removeLink (linkID) {
