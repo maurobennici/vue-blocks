@@ -324,7 +324,7 @@
       // Linking
       linkingStart (block, slotNumber) {
         this.linkStartData = {block: block, slotNumber: slotNumber}
-        let linkStartPos = this.getConnectionPos(this.linkStartData.block, this.linkStartData.slotNumber, false)
+        let linkStartPos = this.getConnectionPos(this.linkStartData.block, slotNumber, false)
         this.tempLink = {
           x1: linkStartPos.x,
           y1: linkStartPos.y,
