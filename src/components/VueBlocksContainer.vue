@@ -336,9 +336,9 @@
       },
       linkingStop (targetBlock, slotNumber) {
         if (this.linkStartData && targetBlock && slotNumber > -1) {
-          this.links = this.links.filter(value => {
-            return !(value.targetID === targetBlock.id && value.targetSlot === slotNumber)
-          })
+          //this.links = this.links.filter(value => {
+          //  return !(value.targetID === targetBlock.id && value.targetSlot === slotNumber)
+          //})
 
           let maxID = Math.max(0, ...this.links.map(function (o) {
             return o.id
