@@ -593,9 +593,9 @@
       exportScene () {
         let clonedBlocks = merge([], this.blocks)
         let blocks = clonedBlocks.map(value => {
-          delete value['inputs']
-          delete value['outputs']
-          delete value['selected']
+          //delete value['inputs']
+          //delete value['outputs']
+          //delete value['selected']
 
           return value
         })
