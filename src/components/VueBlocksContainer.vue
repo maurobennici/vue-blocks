@@ -379,7 +379,7 @@
             this.linkingStart(findBlock, link.originSlot)
 
             this.updateScene()
-          }
+          })
         }
       },
       removeLink (linkID) {
