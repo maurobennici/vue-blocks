@@ -11,6 +11,7 @@
               @linkingBreak="linkingBreak(block, $event)"
               @select="blockSelect(block)"
               @delete="blockDelete(block)"
+              @dblclick="blockEdit(block)"
     />
   </div>
 </template>
@@ -137,7 +138,7 @@
             this.removeLink(link.id)
             continue
           }
-
+          
           if (originBlock.id === targetBlock.id) {
             console.log('Loop detected, remove link', link)
             this.removeLink(link.id)
@@ -337,7 +338,7 @@
       linkingStop (targetBlock, slotNumber) {
         if (this.linkStartData && targetBlock && slotNumber > -1) {
           //this.links = this.links.filter(value => {
-          //  return !(value.targetID === targetBlock.id && value.targetSlot === slotNumber)
+            //return !(value.targetID === targetBlock.id && value.targetSlot === slotNumber)
           //})
 
           let maxID = Math.max(0, ...this.links.map(function (o) {
@@ -346,13 +347,14 @@
 
           // skip if looping
           if (this.linkStartData.block.id !== targetBlock.id) {
-            this.links.push({
+            let link = {
               id: maxID + 1,
               originID: this.linkStartData.block.id,
               originSlot: this.linkStartData.slotNumber,
               targetID: targetBlock.id,
               targetSlot: slotNumber
-            })
+            }
+            this.links.push(link)
             this.updateScene()
           }
         }
@@ -414,6 +416,8 @@
         block.x = x
         block.y = y
         this.blocks.push(block)
+
+        this.blockSelect(block);
 
         this.updateScene()
       },
@@ -487,6 +491,9 @@
         }
 
         this.$emit('blockDeselect', block)
+      },
+      blockEdit (block) {
+        this.$emit('blockEdit', block)
       },
       blockDelete (block) {
         if (block.selected) {
@@ -593,9 +600,9 @@
       exportScene () {
         let clonedBlocks = merge([], this.blocks)
         let blocks = clonedBlocks.map(value => {
-          delete value['inputs']
-          delete value['outputs']
-          delete value['selected']
+          //delete value['inputs']
+          //delete value['outputs']
+          //delete value['selected']
 
           return value
         })
