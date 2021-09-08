@@ -66,11 +66,13 @@
       document.documentElement.addEventListener('mousemove', this.handleMove, true)
       document.documentElement.addEventListener('mousedown', this.handleDown, true)
       document.documentElement.addEventListener('mouseup', this.handleUp, true)
+      document.documentElement.addEventListener('dblclick', this.doubleClick, true)
     },
     beforeDestroy () {
       document.documentElement.removeEventListener('mousemove', this.handleMove, true)
       document.documentElement.removeEventListener('mousedown', this.handleDown, true)
       document.documentElement.removeEventListener('mouseup', this.handleUp, true)
+      document.documentElement.removeEventListener('dblclick', this.doubleClick, true)
     },
     data () {
       return {
@@ -125,6 +127,15 @@
           this.linking = false
         }
       },
+      doubleClick (e) {
+        const target = e.target || e.srcElement
+        if (this.$el.contains(target) && e.which === 1) {
+          this.$emit('dblclick')
+
+        if (e.preventDefault) e.preventDefault()
+        }
+      },
+
       // Slots
       slotMouseDown (e, index) {
         this.linking = true
